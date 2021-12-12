@@ -1,0 +1,43 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Application>
+  <BOModel Id="BOModel">
+    <Class Name="WLRegisterDataWebsite.Module.BusinessObjects.CheckSection">
+      <OwnMembers Id="OwnMembers">
+        <Member Name="Nip" PropertyEditorType="DevExpress.ExpressApp.Editors.ListPropertyEditor" />
+      </OwnMembers>
+    </Class>
+  </BOModel>
+  <Views Id="Views">
+    <DetailView Id="CheckSection_DetailView" AllowDelete="False" AllowEdit="True" AllowNew="False" DefaultFocusedItem="">
+      <Items Id="Items">
+        <PropertyEditor Id="Nip" PropertyEditorType="DevExpress.ExpressApp.Editors.ListPropertyEditor" LinkView="Nip_ListView" View="CheckSection_Nip_ListView" />
+        <PropertyEditor Id="Regon" LinkView="Regon_ListView" />
+      </Items>
+      <Layout Id="Layout">
+        <LayoutGroup Id="Main">
+          <LayoutGroup Id="Nip" Index="1" ShowCaption="True">
+            <LayoutItem Id="Nip" ViewItem="Nip" ShowCaption="False" Index="0" />
+          </LayoutGroup>
+          <LayoutGroup Id="Regon" Index="1" ShowCaption="True">
+            <LayoutItem Id="Regon" ViewItem="Regon" ShowCaption="False" Index="0" />
+          </LayoutGroup>
+          <TabbedGroup Id="Tabs" Removed="True">
+            <LayoutGroup Id="Nip" Removed="True" />
+            <LayoutGroup Id="Regon" Removed="True" />
+          </TabbedGroup>
+        </LayoutGroup>
+      </Layout>
+    </DetailView>
+    <ListView Id="CheckSection_ListView" AllowNew="False" AllowDelete="False" />
+    <ListView Id="CheckSection_LookupListView" AllowNew="False" AllowDelete="False" />
+  </Views>
+  <NavigationItems Id="NavigationItems">
+    <Items Id="Items">
+      <Item Id="Default">
+        <Items Id="Items">
+          <Item Id="CheckSection_ListView" ViewId="CheckSection_DetailView" />
+        </Items>
+      </Item>
+    </Items>
+  </NavigationItems>
+</Application>

@@ -1,0 +1,49 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Application Title="WLRegisterDataWebsite">
+  <BOModel>
+    <Class Name="WLRegisterDataWebsite.Module.BusinessObjects.Models.Entities.EntityCheck" DefaultListView="" DefaultLookupListView="" />
+    <Class Name="WLRegisterDataWebsite.Module.BusinessObjects.Models.Parameters.Nip" DefaultListViewMasterDetailMode="ListViewOnly" />
+  </BOModel>
+  <NavigationItems>
+    <Items>
+      <Item Id="Default">
+        <Items>
+          <Item Id="BankAccount_ListView" Removed="True" />
+          <Item Id="Nip_ListView" Visible="False" Removed="True" />
+          <Item Id="ParameterBase_ListView" Visible="False" Removed="True" />
+          <Item Id="Regon_ListView" Visible="False" Removed="True" />
+          <Item Id="SearchSubject_ListView" ViewId="SearchSubject_DetailView" />
+        </Items>
+      </Item>
+    </Items>
+  </NavigationItems>
+  <SchemaModules>
+    <SchemaModule Name="SystemModule" Version="21.2.3.0" IsNewNode="True" />
+  </SchemaModules>
+  <Views>
+    <ListView Id="Regon_ListView" AllowEdit="False" />
+    <DetailView Id="SearchSubject_DetailView">
+      <HiddenActions>
+        <ActionLink ActionId="Close" IsNewNode="True" />
+        <ActionLink ActionId="Delete" IsNewNode="True" />
+        <ActionLink ActionId="New" IsNewNode="True" />
+        <ActionLink ActionId="Refresh" IsNewNode="True" />
+        <ActionLink ActionId="Save" IsNewNode="True" />
+      </HiddenActions>
+      <Layout>
+        <LayoutGroup Id="Main">
+          <LayoutGroup Id="Nip" Index="1" ShowCaption="True" IsNewNode="True">
+            <LayoutItem Id="Nip" ViewItem="Nip" ShowCaption="False" Index="0" IsNewNode="True" />
+          </LayoutGroup>
+          <TabbedGroup Id="Tabs" Index="1" Removed="True" />
+          <LayoutGroup Id="Regon" Index="2" ShowCaption="True" IsNewNode="True">
+            <LayoutItem Id="Regon" ViewItem="Regon" ShowCaption="False" Index="0" IsNewNode="True" />
+          </LayoutGroup>
+          <LayoutGroup Id="BankAccount" Index="3" ShowCaption="True" IsNewNode="True">
+            <LayoutItem Id="BankAccount" ViewItem="BankAccounts" ShowCaption="False" Index="0" IsNewNode="True" />
+          </LayoutGroup>
+        </LayoutGroup>
+      </Layout>
+    </DetailView>
+  </Views>
+</Application>
