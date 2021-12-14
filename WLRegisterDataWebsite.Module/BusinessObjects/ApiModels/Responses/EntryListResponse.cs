@@ -1,5 +1,6 @@
 ﻿using DevExpress.ExpressApp;
 using DevExpress.ExpressApp.DC;
+using DevExpress.Persistent.Base;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -13,6 +14,7 @@ namespace WLRegisterDataWebsite.Module.BusinessObjects.ApiModels.Responses
     {
         private EntryList result;
 
+        [ExpandObjectMembers(ExpandObjectMembers.Always)]
         public EntryList Result
         {
             get => result;

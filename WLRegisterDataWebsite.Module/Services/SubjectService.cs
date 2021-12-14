@@ -23,7 +23,7 @@ namespace WLRegisterDataWebsite.Module.Services
 
         public async Task<object> Search(SearchSubject model, SearchOption selectedOption)
         {
-            var strategy = SearchApiFactory.GetStrategy(TestUri, model, selectedOption);
+            var strategy = SearchApiFactory.GetStrategy(ProductionUri, model, selectedOption);
             var result = await strategy.Search();
             return result;
         }

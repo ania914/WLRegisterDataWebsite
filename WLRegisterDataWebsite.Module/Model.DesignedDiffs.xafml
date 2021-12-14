@@ -15,6 +15,7 @@
           <Item Id="SearchSubject_ListView" Index="2" ViewId="SearchSubject_DetailView" />
           <Item Id="CheckSubject_ListView" Index="3" ViewId="CheckSubject_DetailView" />
           <Item Id="BankAccount_ListView" Removed="True" />
+          <Item Id="EntityItem_ListView" Removed="True" />
           <Item Id="Nip_ListView" Visible="False" Removed="True" />
           <Item Id="ParameterBase_ListView" Visible="False" Removed="True" />
           <Item Id="Regon_ListView" Visible="False" Removed="True" />
@@ -49,6 +50,8 @@
         </LayoutGroup>
       </Layout>
     </DetailView>
+    <DetailView Id="EntityItem_DetailView" AllowEdit="False" />
+    <DetailView Id="EntityList_DetailView" AllowEdit="False" />
     <DetailView Id="EntityListResponse_DetailView">
       <HiddenActions>
         <ActionLink ActionId="Close" IsNewNode="True" />
@@ -57,8 +60,16 @@
         <ActionLink ActionId="Refresh" IsNewNode="True" />
         <ActionLink ActionId="Save" IsNewNode="True" />
       </HiddenActions>
+      <Items>
+        <PropertyEditor Id="Result.Subject" LinkView="EntityModel_ListView" />
+      </Items>
     </DetailView>
-    <DetailView Id="EntityResponse_DetailView">
+    <ListView Id="EntityModel_ListView">
+      <Columns>
+        <ColumnInfo Id="Name" SortOrder="Ascending" />
+      </Columns>
+    </ListView>
+    <DetailView Id="EntityResponse_DetailView" AllowEdit="False" AllowDelete="False" AllowNew="False" DefaultFocusedItem="Result.RequestDateTime">
       <HiddenActions>
         <ActionLink ActionId="Close" IsNewNode="True" />
         <ActionLink ActionId="Delete" IsNewNode="True" />

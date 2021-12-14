@@ -1,8 +1,11 @@
 ﻿using DevExpress.ExpressApp;
+using DevExpress.ExpressApp.DC;
 using System.Collections.Generic;
+using WLRegisterDataWebsite.Module.BusinessObjects.Models;
 
 namespace WLRegisterDataWebsite.Module.BusinessObjects.ApiModels
 {
+    [DomainComponent]
     public class EntityList : NonPersistentBaseObject
     {
         private List<EntityModel> subject = new List<EntityModel>();

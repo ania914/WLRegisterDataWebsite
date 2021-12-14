@@ -1,7 +1,17 @@
-﻿namespace WLRegisterDataWebsite.Module.BusinessObjects.Models
+﻿using DevExpress.ExpressApp;
+using DevExpress.ExpressApp.DC;
+
+namespace WLRegisterDataWebsite.Module.BusinessObjects.Models
 {
-    public class AccountNumberModel
+    [DomainComponent]
+    public class AccountNumberModel : NonPersistentBaseObject
     {
-        public string Number { get; set; }
+        private string number;
+
+        public string Number
+        {
+            get => number;
+            set => SetPropertyValue(ref number, value);
+        }
     }
 }

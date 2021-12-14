@@ -1,31 +1,135 @@
-﻿using System;
+﻿using DevExpress.ExpressApp;
+using DevExpress.ExpressApp.DC;
+using DevExpress.Persistent.Base;
+using System;
 using System.Collections.Generic;
-using WLRegisterDataWebsite.Module.BusinessObjects.Models;
 using WLRegisterDataWebsite.Module.Enums;
 
-namespace WLRegisterDataWebsite.Module.BusinessObjects
+namespace WLRegisterDataWebsite.Module.BusinessObjects.Models
 {
-    public class EntityModel
+    [DomainComponent]
+    [DefaultClassOptions]
+    public class EntityModel : NonPersistentBaseObject
     {
-        public string Name { get; set; }
-        public string Nip { get; set; }
-        public StatusVat StatusVat { get; set; }
-        public string Regon { get; set; }
-        public string Pesel { get; set; }
-        public string Krs { get; set; }
-        public string ResidenceAddress { get; set; }
-        public string WorkingAddress { get; set; }
-        public List<EntityPersonModel> Representatives { get; set; }
-        public List<EntityPersonModel> AuthorizedClerks { get; set; }
-        public List<EntityPersonModel> Partners { get; set; }
-        public DateTime? RegistrationLegalDate { get; set; }
-        public DateTime? RegistrationDenialDate { get; set; }
-        public string RegistrationDenialBasis { get; set; }
-        public DateTime? RestorationDate { get; set; }
-        public string RestorationBasis { get; set; }
-        public DateTime? RemovalDate { get; set; }
-        public string RemovalBasis { get; set; }
-        public List<AccountNumberModel> AccountNumbers { get; set; }
-        public bool HasVirtualAccounts { get; set; }
+        private string name;
+        private string nip;
+        private StatusVat statusVat;
+        private string regon;
+        private string pesel;
+        private string krs;
+        private string residenceAddress;
+        private string workingAddress;
+        private List<EntityPersonModel> representatives;
+        private List<EntityPersonModel> authorizedClerks;
+        private List<EntityPersonModel> partners;
+        private DateTime? registrationLegalDate;
+        private DateTime? registrationDenialDate;
+        private string registrationDenialBasis;
+        private DateTime? restorationDate;
+        private string restorationBasis;
+        private DateTime? removalDate;
+        private string removalBasis;
+        private List<string> accountNumbers;
+        private bool hasVirtualAccounts;
+
+        public string Name
+        {
+            get => name;
+            set => SetPropertyValue(ref name, value);
+        }
+        public string Nip
+        {
+            get => nip;
+            set => SetPropertyValue(ref nip, value);
+        }
+        public StatusVat StatusVat
+        {
+            get => statusVat; set => SetPropertyValue(ref statusVat, value);
+        }
+        public string Regon
+        {
+            get => regon;
+            set => SetPropertyValue(ref regon, value);
+        }
+        public string Pesel
+        {
+            get => pesel;
+            set => SetPropertyValue(ref pesel, value);
+        }
+        public string Krs
+        {
+            get => krs;
+            set => SetPropertyValue(ref krs, value);
+        }
+        public string ResidenceAddress
+        {
+            get => residenceAddress;
+            set => SetPropertyValue(ref residenceAddress, value);
+        }
+        public string WorkingAddress
+        {
+            get => workingAddress;
+            set => SetPropertyValue(ref workingAddress, value);
+        }
+        public List<EntityPersonModel> Representatives
+        {
+            get => representatives;
+            set => SetPropertyValue(ref representatives, value);
+        }
+        public List<EntityPersonModel> AuthorizedClerks
+        {
+            get => authorizedClerks;
+            set => SetPropertyValue(ref authorizedClerks, value);
+        }
+        public List<EntityPersonModel> Partners
+        {
+            get => partners;
+            set => SetPropertyValue(ref partners, value);
+        }
+        public DateTime? RegistrationLegalDate
+        {
+            get => registrationLegalDate;
+            set => SetPropertyValue(ref registrationLegalDate, value);
+        }
+        public DateTime? RegistrationDenialDate
+        {
+            get => registrationDenialDate;
+            set => SetPropertyValue(ref registrationDenialDate, value);
+        }
+        public string RegistrationDenialBasis
+        {
+            get => registrationDenialBasis;
+            set => SetPropertyValue(ref registrationDenialBasis, value);
+        }
+        public DateTime? RestorationDate
+        {
+            get => restorationDate;
+            set => SetPropertyValue(ref restorationDate, value);
+        }
+        public string RestorationBasis
+        {
+            get => restorationBasis;
+            set => SetPropertyValue(ref restorationBasis, value);
+        }
+        public DateTime? RemovalDate
+        {
+            get => removalDate;
+            set => SetPropertyValue(ref removalDate, value);
+        }
+        public string RemovalBasis
+        {
+            get => removalBasis;
+            set => SetPropertyValue(ref removalBasis, value);
+        }
+        public List<string> AccountNumbers
+        {
+            get => accountNumbers;
+            set => SetPropertyValue(ref accountNumbers, value);
+        }
+        public bool HasVirtualAccounts
+        {
+            get => hasVirtualAccounts;
+            set => SetPropertyValue(ref hasVirtualAccounts, value);
+        }
     }
 }

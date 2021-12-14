@@ -1,11 +1,41 @@
-﻿namespace WLRegisterDataWebsite.Module.BusinessObjects.Models
+﻿using DevExpress.ExpressApp;
+using DevExpress.ExpressApp.DC;
+
+namespace WLRegisterDataWebsite.Module.BusinessObjects.Models
 {
-    public class EntityPersonModel
+    [DomainComponent]
+    public class EntityPersonModel : NonPersistentBaseObject
     {
-        public string CompanyName { get; set; }
-        public string FirstName { get; set; }
-        public string LastName { get; set; }
-        public string Pesel { get; set; }
-        public string Nip { get; set; }
+        private string companyName;
+        private string firstName;
+        private string lastName;
+        private string pesel;
+        private string nip;
+
+        public string CompanyName
+        {
+            get => companyName;
+            set => SetPropertyValue(ref companyName, value);
+        }
+        public string FirstName
+        {
+            get => firstName;
+            set => SetPropertyValue(ref firstName, value);
+        }
+        public string LastName
+        {
+            get => lastName;
+            set => SetPropertyValue(ref lastName, value);
+        }
+        public string Pesel
+        {
+            get => pesel;
+            set => SetPropertyValue(ref pesel, value);
+        }
+        public string Nip
+        {
+            get => nip;
+            set => SetPropertyValue(ref nip, value);
+        }
     }
 }
