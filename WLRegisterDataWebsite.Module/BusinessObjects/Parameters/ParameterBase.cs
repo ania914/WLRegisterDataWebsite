@@ -3,7 +3,7 @@ using DevExpress.ExpressApp.DC;
 using DevExpress.Persistent.Base;
 using DevExpress.Persistent.Validation;
 
-namespace WLRegisterDataWebsite.Module.BusinessObjects.Models.Parameters
+namespace WLRegisterDataWebsite.Module.BusinessObjects.Parameters
 {
     [DomainComponent, DefaultClassOptions]
     public class ParameterBase : NonPersistentBaseObject

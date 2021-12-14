@@ -1,7 +1,7 @@
 ﻿using DevExpress.ExpressApp;
 using DevExpress.ExpressApp.SystemModule;
 using DevExpress.Persistent.Validation;
-using WLRegisterDataWebsite.Module.BusinessObjects.Models.Parameters;
+using WLRegisterDataWebsite.Module.BusinessObjects.Parameters;
 
 namespace WLRegisterDataWebsite.Module.Controllers
 {

@@ -3,7 +3,7 @@ using DevExpress.ExpressApp.DC;
 using DevExpress.Persistent.Base;
 using System;
 using System.Collections.Generic;
-using WLRegisterDataWebsite.Module.BusinessObjects.Models.Parameters;
+using WLRegisterDataWebsite.Module.BusinessObjects.Parameters;
 
 namespace WLRegisterDataWebsite.Module.BusinessObjects
 {
@@ -11,8 +11,8 @@ namespace WLRegisterDataWebsite.Module.BusinessObjects
     public class CheckSubject : NonPersistentBaseObject
     {
         private DateTime date;
-        private List<Nip> nip;
-        private List<Regon> regon;
+        private List<Nip> nip = new List<Nip>();
+        private List<Regon> regon = new List<Regon>();
 
         public DateTime Date
         {

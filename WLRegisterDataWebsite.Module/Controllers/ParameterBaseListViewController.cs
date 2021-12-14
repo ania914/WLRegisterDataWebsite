@@ -2,7 +2,7 @@
 using DevExpress.ExpressApp.Actions;
 using DevExpress.ExpressApp.SystemModule;
 using System.Linq;
-using WLRegisterDataWebsite.Module.BusinessObjects.Models.Parameters;
+using WLRegisterDataWebsite.Module.BusinessObjects.Parameters;
 
 namespace WLRegisterDataWebsite.Module.Controllers
 {
@@ -62,7 +62,7 @@ namespace WLRegisterDataWebsite.Module.Controllers
                 processCurrentObjectController.ProcessCurrentObjectAction.Executing -= ProcessCurrentObjectAction_Executing;
             }
         }
-
+        
         private void NewObjectViewController_ObjectCreated(object sender, ObjectCreatedEventArgs e)
         {
             e.ObjectSpace.Committed += ObjectSpace_Committed;

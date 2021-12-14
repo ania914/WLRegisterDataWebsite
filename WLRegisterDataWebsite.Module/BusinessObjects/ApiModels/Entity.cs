@@ -3,8 +3,6 @@ using DevExpress.Persistent.Base;
 using DevExpress.Persistent.BaseImpl;
 using DevExpress.Xpo;
 using System;
-using System.Collections.Generic;
-using WLRegisterDataWebsite.Module.BusinessObjects.Models.Parameters;
 using WLRegisterDataWebsite.Module.Enums;
 
 namespace WLRegisterDataWebsite.Module.BusinessObjects.ApiModels

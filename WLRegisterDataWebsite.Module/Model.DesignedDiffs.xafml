@@ -14,8 +14,8 @@
       <Item Id="Default">
         <Items>
           <Item Id="Entity_ListView" Index="1" />
-          <Item Id="SearchSubject_ListView" ViewId="SearchSubject_DetailView" Index="2" />
-          <Item Id="CheckSubject_ListView" Index="3" />
+          <Item Id="SearchSubject_ListView" Index="2" ViewId="SearchSubject_DetailView" />
+          <Item Id="CheckSubject_ListView" Index="3" ViewId="CheckSubject_DetailView" />
           <Item Id="BankAccount_ListView" Removed="True" />
           <Item Id="Nip_ListView" Visible="False" Removed="True" />
           <Item Id="ParameterBase_ListView" Visible="False" Removed="True" />
@@ -28,6 +28,29 @@
     <SchemaModule Name="SystemModule" Version="21.2.3.0" IsNewNode="True" />
   </SchemaModules>
   <Views>
+    <DetailView Id="CheckSubject_DetailView">
+      <HiddenActions>
+        <ActionLink ActionId="Close" IsNewNode="True" />
+        <ActionLink ActionId="Delete" IsNewNode="True" />
+        <ActionLink ActionId="New" IsNewNode="True" />
+        <ActionLink ActionId="Refresh" IsNewNode="True" />
+        <ActionLink ActionId="Save" IsNewNode="True" />
+      </HiddenActions>
+      <Layout>
+        <LayoutGroup Id="Main">
+          <LayoutGroup Id="Nip" Index="1" ShowCaption="True" IsNewNode="True">
+            <LayoutItem Id="Nip" ViewItem="Nip" ShowCaption="False" Index="0" IsNewNode="True" />
+          </LayoutGroup>
+          <LayoutGroup Id="Regon" Index="2" ShowCaption="True" IsNewNode="True">
+            <LayoutItem Id="Regon" ViewItem="Regon" ShowCaption="False" Index="0" IsNewNode="True" />
+          </LayoutGroup>
+          <TabbedGroup Id="Tabs" Removed="True">
+            <LayoutGroup Id="Nip" Removed="True" />
+            <LayoutGroup Id="Regon" Removed="True" />
+          </TabbedGroup>
+        </LayoutGroup>
+      </Layout>
+    </DetailView>
     <ListView Id="Regon_ListView" AllowEdit="False" />
     <DetailView Id="SearchSubject_DetailView">
       <HiddenActions>

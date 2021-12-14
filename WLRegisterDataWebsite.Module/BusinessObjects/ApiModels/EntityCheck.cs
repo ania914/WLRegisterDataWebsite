@@ -1,10 +1,7 @@
 ﻿using DevExpress.ExpressApp;
-using DevExpress.ExpressApp.DC;
-using DevExpress.Persistent.Base;
 
-namespace WLRegisterDataWebsite.Module.BusinessObjects.Models.Entities
+namespace WLRegisterDataWebsite.Module.BusinessObjects.ApiModels
 {
-    [DomainComponent]
     public class EntityCheck : NonPersistentBaseObject
     {
         private string accountAssigned, requestDateTime, requestId;

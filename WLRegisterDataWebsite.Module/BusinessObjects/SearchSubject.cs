@@ -4,7 +4,7 @@ using DevExpress.Persistent.Base;
 using DevExpress.Persistent.Validation;
 using System;
 using System.Collections.Generic;
-using WLRegisterDataWebsite.Module.BusinessObjects.Models.Parameters;
+using WLRegisterDataWebsite.Module.BusinessObjects.Parameters;
 
 namespace WLRegisterDataWebsite.Module.BusinessObjects
 {
@@ -15,11 +15,6 @@ namespace WLRegisterDataWebsite.Module.BusinessObjects
         private List<Nip> nip = new List<Nip>();
         private List<Regon> regon = new List<Regon>();
         private List<BankAccount> bankAccounts = new List<BankAccount>();
-
-        public SearchSubject()
-        {
-           // Fill();
-        }
 
         public DateTime Date
         {
@@ -46,14 +41,6 @@ namespace WLRegisterDataWebsite.Module.BusinessObjects
         {
             get => bankAccounts;
             set => SetPropertyValue(ref bankAccounts, value);
-        }
-
-        private void Fill()
-        {
-            for (int i = 0; i < 30; i++)
-            {
-                Nip.Add(new Nip { Number = "gujfjgk" });
-            }
         }
     }
 }
