@@ -31,21 +31,17 @@ namespace WLRegisterDataWebsite.Module.Controllers.SearchControllers
                 Caption = "Search"
             };
             searchAction.Execute += SearchAction_Execute;
-            // Target required Views (via the TargetXXX properties) and create their Actions.
         }
         protected override void OnActivated()
         {
             base.OnActivated();
-            // Perform various tasks depending on the target View.
         }
         protected override void OnViewControlsCreated()
         {
             base.OnViewControlsCreated();
-            // Access and customize the target View control.
         }
         protected override void OnDeactivated()
         {
-            // Unsubscribe from previously subscribed events and release other references and resources.
             base.OnDeactivated();
             searchAction.Execute -= SearchAction_Execute;
         }

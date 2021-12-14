@@ -1,7 +1,7 @@
 ﻿
 namespace WLRegisterDataWebsite.Module.Controllers.SearchControllers
 {
-    partial class SearchSubjectController
+    partial class SelectSearchOptionController
     {
         /// <summary>
         /// Required designer variable.

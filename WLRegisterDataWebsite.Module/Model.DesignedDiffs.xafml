@@ -3,16 +3,23 @@
   <BOModel>
     <Class Name="WLRegisterDataWebsite.Module.BusinessObjects.Models.Entities.EntityCheck" DefaultListView="" DefaultLookupListView="" />
     <Class Name="WLRegisterDataWebsite.Module.BusinessObjects.Models.Parameters.Nip" DefaultListViewMasterDetailMode="ListViewOnly" />
+    <Class Name="WLRegisterDataWebsite.Module.BusinessObjects.SearchSubject">
+      <OwnMembers>
+        <Member Name="Nip" DataSourceCriteria="StartsWith([Number], 'a')" DataSourceCriteriaProperty="" />
+      </OwnMembers>
+    </Class>
   </BOModel>
   <NavigationItems>
     <Items>
       <Item Id="Default">
         <Items>
+          <Item Id="Entity_ListView" Index="1" />
+          <Item Id="SearchSubject_ListView" ViewId="SearchSubject_DetailView" Index="2" />
+          <Item Id="CheckSubject_ListView" Index="3" />
           <Item Id="BankAccount_ListView" Removed="True" />
           <Item Id="Nip_ListView" Visible="False" Removed="True" />
           <Item Id="ParameterBase_ListView" Visible="False" Removed="True" />
           <Item Id="Regon_ListView" Visible="False" Removed="True" />
-          <Item Id="SearchSubject_ListView" ViewId="SearchSubject_DetailView" />
         </Items>
       </Item>
     </Items>
@@ -30,6 +37,9 @@
         <ActionLink ActionId="Refresh" IsNewNode="True" />
         <ActionLink ActionId="Save" IsNewNode="True" />
       </HiddenActions>
+      <Items>
+        <PropertyEditor Id="Nip" DataSourceCriteria="" />
+      </Items>
       <Layout>
         <LayoutGroup Id="Main">
           <LayoutGroup Id="Nip" Index="1" ShowCaption="True" IsNewNode="True">
@@ -45,5 +55,6 @@
         </LayoutGroup>
       </Layout>
     </DetailView>
+    <ListView Id="SearchSubject_Nip_ListView" Criteria="" />
   </Views>
 </Application>

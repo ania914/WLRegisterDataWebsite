@@ -13,14 +13,14 @@ using WLRegisterDataWebsite.Module.Extensions;
 
 namespace WLRegisterDataWebsite.Module.Controllers.SearchControllers
 {
-    public partial class SearchSubjectController : ViewController
+    public partial class SelectSearchOptionController : ViewController
     {
         private const string SearchOptionSelectionAction = "SearchOptionSelectionAction";
 
         private SingleChoiceAction searchOptionSelectionAction;
         private IList<PropertyEditor> propertyEditors;
 
-        public SearchSubjectController()
+        public SelectSearchOptionController()
         {
             InitializeComponent();
             TargetViewType = ViewType.DetailView;

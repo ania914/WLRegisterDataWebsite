@@ -9,13 +9,13 @@ using System.Threading.Tasks;
 
 namespace WLRegisterDataWebsite.Module.Blazor.Controllers
 {
-    //public class BlazorDiagnosticInfoController : DiagnosticInfoController
-    //{
-    //    protected override void OnActivated()
-    //    {
-    //        base.OnActivated();
-    //        IConfiguration configuration = (IConfiguration)((BlazorApplication)Application).ServiceProvider.GetService(typeof(IConfiguration));
-    //        DiagnosticInfo.Active.SetItemValue(EnableDiagnosticActionsActiveKey, configuration.GetValue<bool>("EnableDiagnosticActions"));
-    //    }
-    //}
+    public class BlazorDiagnosticInfoController : DiagnosticInfoController
+    {
+        protected override void OnActivated()
+        {
+            base.OnActivated();
+            IConfiguration configuration = (IConfiguration)((BlazorApplication)Application).ServiceProvider.GetService(typeof(IConfiguration));
+            DiagnosticInfo.Active.SetItemValue(EnableDiagnosticActionsActiveKey, configuration.GetValue<bool>("EnableDiagnosticActions"));
+        }
+    }
 }

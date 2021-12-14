@@ -10,7 +10,7 @@ namespace WLRegisterDataWebsite.Module.BusinessObjects.Models.Parameters
     {
         private string parameterValue;
 
-        [RuleRegularExpression(@"^[0-9]+$", CustomMessageTemplate = "Please enter numeric value")]
+        [RuleRegularExpression("Number_Criteria", DefaultContexts.Save, @"^[0-9]+$", CustomMessageTemplate = "Please enter numeric value")]
         public string Number
         {
             get => parameterValue;
