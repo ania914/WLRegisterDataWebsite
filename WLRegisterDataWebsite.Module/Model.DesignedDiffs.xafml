@@ -1,8 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Application Title="WLRegisterDataWebsite">
   <BOModel>
-    <Class Name="WLRegisterDataWebsite.Module.BusinessObjects.Models.Entities.EntityCheck" DefaultListView="" DefaultLookupListView="" />
-    <Class Name="WLRegisterDataWebsite.Module.BusinessObjects.Models.Parameters.Nip" DefaultListViewMasterDetailMode="ListViewOnly" />
     <Class Name="WLRegisterDataWebsite.Module.BusinessObjects.SearchSubject">
       <OwnMembers>
         <Member Name="Nip" DataSourceCriteria="StartsWith([Number], 'a')" DataSourceCriteriaProperty="" />
@@ -50,6 +48,51 @@
           </TabbedGroup>
         </LayoutGroup>
       </Layout>
+    </DetailView>
+    <DetailView Id="EntityListResponse_DetailView">
+      <HiddenActions>
+        <ActionLink ActionId="Close" IsNewNode="True" />
+        <ActionLink ActionId="Delete" IsNewNode="True" />
+        <ActionLink ActionId="New" IsNewNode="True" />
+        <ActionLink ActionId="Refresh" IsNewNode="True" />
+        <ActionLink ActionId="Save" IsNewNode="True" />
+      </HiddenActions>
+    </DetailView>
+    <DetailView Id="EntityResponse_DetailView">
+      <HiddenActions>
+        <ActionLink ActionId="Close" IsNewNode="True" />
+        <ActionLink ActionId="Delete" IsNewNode="True" />
+        <ActionLink ActionId="New" IsNewNode="True" />
+        <ActionLink ActionId="Refresh" IsNewNode="True" />
+        <ActionLink ActionId="Save" IsNewNode="True" />
+      </HiddenActions>
+    </DetailView>
+    <DetailView Id="EntryError_DetailView">
+      <HiddenActions>
+        <ActionLink ActionId="Close" IsNewNode="True" />
+        <ActionLink ActionId="Delete" IsNewNode="True" />
+        <ActionLink ActionId="New" IsNewNode="True" />
+        <ActionLink ActionId="Refresh" IsNewNode="True" />
+        <ActionLink ActionId="Save" IsNewNode="True" />
+      </HiddenActions>
+    </DetailView>
+    <DetailView Id="EntryListResponse_DetailView">
+      <HiddenActions>
+        <ActionLink ActionId="Close" IsNewNode="True" />
+        <ActionLink ActionId="Delete" IsNewNode="True" />
+        <ActionLink ActionId="New" IsNewNode="True" />
+        <ActionLink ActionId="Refresh" IsNewNode="True" />
+        <ActionLink ActionId="Save" IsNewNode="True" />
+      </HiddenActions>
+    </DetailView>
+    <DetailView Id="ExceptionModel_DetailView" AllowEdit="False">
+      <HiddenActions>
+        <ActionLink ActionId="Close" IsNewNode="True" />
+        <ActionLink ActionId="Delete" IsNewNode="True" />
+        <ActionLink ActionId="New" IsNewNode="True" />
+        <ActionLink ActionId="Refresh" IsNewNode="True" />
+        <ActionLink ActionId="Save" IsNewNode="True" />
+      </HiddenActions>
     </DetailView>
     <ListView Id="Regon_ListView" AllowEdit="False" />
     <DetailView Id="SearchSubject_DetailView">

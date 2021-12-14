@@ -3,6 +3,7 @@ using DevExpress.ExpressApp.Actions;
 using DevExpress.ExpressApp.SystemModule;
 using System.Linq;
 using WLRegisterDataWebsite.Module.BusinessObjects.Parameters;
+using WLRegisterDataWebsite.Module.Services;
 
 namespace WLRegisterDataWebsite.Module.Controllers
 {

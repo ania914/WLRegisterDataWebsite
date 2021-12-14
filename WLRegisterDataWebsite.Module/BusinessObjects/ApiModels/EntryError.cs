@@ -1,10 +1,12 @@
 ﻿using DevExpress.ExpressApp;
+using DevExpress.ExpressApp.DC;
 
 namespace WLRegisterDataWebsite.Module.BusinessObjects.ApiModels
 {
+    [DomainComponent]
     public class EntryError: NonPersistentBaseObject
     {
-        private Exception error;
+        private ExceptionModel error;
         private string identifier;
 
         public string Identifier
@@ -13,7 +15,7 @@ namespace WLRegisterDataWebsite.Module.BusinessObjects.ApiModels
             set => SetPropertyValue(ref identifier, value);
         }
 
-        public Exception Error
+        public ExceptionModel Error
         {
             get => error;
             set => SetPropertyValue(ref error, value);

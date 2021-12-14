@@ -1,8 +1,10 @@
 ﻿using DevExpress.ExpressApp;
+using DevExpress.ExpressApp.DC;
 
 namespace WLRegisterDataWebsite.Module.BusinessObjects.ApiModels
 {
-    public class Exception : NonPersistentBaseObject
+    [DomainComponent]
+    public class ExceptionModel : NonPersistentBaseObject
     {
         private string code;
         private string message;

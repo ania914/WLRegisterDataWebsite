@@ -20,6 +20,8 @@ namespace WLRegisterDataWebsite.Module.Controllers.SearchControllers
         private SingleChoiceAction searchOptionSelectionAction;
         private IList<PropertyEditor> propertyEditors;
 
+        public EventHandler<SearchOption> OnSelectionChanged;
+
         public SelectSearchOptionController()
         {
             InitializeComponent();
@@ -60,6 +62,11 @@ namespace WLRegisterDataWebsite.Module.Controllers.SearchControllers
 
         private void SearchOptionSelectionAction_Execute(object sender, SingleChoiceActionExecuteEventArgs e)
         {
+            if(Enum.TryParse(typeof(SearchOption), e.SelectedChoiceActionItem.Data.ToString(), out object result) && result!= null)
+            {
+                var selectedOption = (SearchOption)result;
+                OnSelectionChanged?.Invoke(this, selectedOption);
+            }
             HideAllPropertyEditors();
             ChangePropertyEditorVisibility(e.SelectedChoiceActionItem.Data.ToString(), true);
         }

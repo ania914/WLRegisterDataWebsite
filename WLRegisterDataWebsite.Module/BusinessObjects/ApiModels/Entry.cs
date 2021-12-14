@@ -6,7 +6,7 @@ namespace WLRegisterDataWebsite.Module.BusinessObjects.ApiModels
     public class Entry : NonPersistentBaseObject
     {
         private string identifier;
-        private List<Entity> subjects = new List<Entity>();
+        private List<EntityModel> subjects = new List<EntityModel>();
 
         public string Identifier
         {
@@ -14,7 +14,7 @@ namespace WLRegisterDataWebsite.Module.BusinessObjects.ApiModels
             set => SetPropertyValue(ref identifier, value);
         }
 
-        public List<Entity> Subjects
+        public List<EntityModel> Subjects
         {
             get => subjects;
             set => SetPropertyValue(ref subjects, value);

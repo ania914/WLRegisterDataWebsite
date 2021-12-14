@@ -1,14 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using DevExpress.ExpressApp.Blazor.Services;
-using DevExpress.Persistent.Base;
-using Microsoft.AspNetCore.Authentication.Cookies;
+﻿using DevExpress.ExpressApp.Blazor.Services;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Components.Server.Circuits;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
@@ -18,7 +11,8 @@ using DevExpress.ExpressApp.WebApi.Swashbuckle;
 using Microsoft.OpenApi.Models;
 using Microsoft.AspNetCore.OData;
 
-namespace WLRegisterDataWebsite.Blazor.Server {
+namespace WLRegisterDataWebsite.Blazor.Server
+{
     public class Startup {
         public Startup(IConfiguration configuration) {
             Configuration = configuration;

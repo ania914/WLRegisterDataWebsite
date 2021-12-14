@@ -10,7 +10,7 @@ namespace WLRegisterDataWebsite.Module.BusinessObjects
     [DomainComponent, DefaultClassOptions, XafDisplayName("Check")]
     public class CheckSubject : NonPersistentBaseObject
     {
-        private DateTime date;
+        private DateTime date = DateTime.Today;
         private List<Nip> nip = new List<Nip>();
         private List<Regon> regon = new List<Regon>();
 

@@ -11,7 +11,7 @@ namespace WLRegisterDataWebsite.Module.BusinessObjects
     [DomainComponent, DefaultClassOptions, XafDisplayName("Search")]
     public class SearchSubject : NonPersistentBaseObject
     {
-        private DateTime date;
+        private DateTime date = DateTime.Today;
         private List<Nip> nip = new List<Nip>();
         private List<Regon> regon = new List<Regon>();
         private List<BankAccount> bankAccounts = new List<BankAccount>();

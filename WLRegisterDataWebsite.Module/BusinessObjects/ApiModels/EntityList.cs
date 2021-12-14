@@ -5,11 +5,11 @@ namespace WLRegisterDataWebsite.Module.BusinessObjects.ApiModels
 {
     public class EntityList : NonPersistentBaseObject
     {
-        private List<Entity> subject = new List<Entity>();
+        private List<EntityModel> subject = new List<EntityModel>();
         private string requestDateTime;
         private string requestId;
 
-        public List<Entity> Subject
+        public List<EntityModel> Subject
         {
             get => subject;
             set => SetPropertyValue(ref subject, value);

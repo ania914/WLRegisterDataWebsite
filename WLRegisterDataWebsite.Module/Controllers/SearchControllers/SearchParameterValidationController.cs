@@ -1,4 +1,6 @@
-﻿namespace WLRegisterDataWebsite.Module.Controllers.SearchControllers
+﻿using WLRegisterDataWebsite.Module.Services;
+
+namespace WLRegisterDataWebsite.Module.Controllers.SearchControllers
 {
     public class SearchParameterValidationController : ParameterBaseListViewController
     {
