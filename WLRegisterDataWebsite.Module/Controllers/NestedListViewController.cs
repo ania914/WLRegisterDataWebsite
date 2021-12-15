@@ -2,43 +2,26 @@
 using DevExpress.ExpressApp.Actions;
 using DevExpress.ExpressApp.SystemModule;
 using System.Linq;
-using WLRegisterDataWebsite.Module.BusinessObjects.Parameters;
-using WLRegisterDataWebsite.Module.Services;
 
 namespace WLRegisterDataWebsite.Module.Controllers
 {
-    public abstract class ParameterBaseListViewController : ObjectViewController<ListView, ParameterBase>
+    // For more typical usage scenarios, be sure to check out https://documentation.devexpress.com/eXpressAppFramework/clsDevExpressExpressAppViewControllertopic.aspx.
+    public partial class NestedListViewController : ViewController
     {
         private ListViewProcessCurrentObjectController processCurrentObjectController;
-        private NewObjectViewController newObjectViewController;
-        private DeleteObjectsViewController deleteObjectsViewController;
         private object oldValue;
 
-        protected abstract int MaxCount { get; }
-        protected abstract string ParameterViewId { get; }
-
-        public ParameterBaseListViewController()
+        public NestedListViewController()
         {
-            TargetViewId = ParameterViewId;
+            InitializeComponent();
+            TargetViewNesting = Nesting.Nested;
         }
-
         protected override void OnActivated()
         {
             base.OnActivated();
-            newObjectViewController = Frame.GetController<NewObjectViewController>();
-            if(newObjectViewController != null)
-            {
-                newObjectViewController.ObjectCreated += NewObjectViewController_ObjectCreated;
-            }
-
-            deleteObjectsViewController = Frame.GetController<DeleteObjectsViewController>();
-            if(deleteObjectsViewController != null)
-            {
-                deleteObjectsViewController.DeleteAction.Execute += DeleteAction_Execute;
-            }
 
             processCurrentObjectController = Frame.GetController<ListViewProcessCurrentObjectController>();
-            if(processCurrentObjectController != null)
+            if (processCurrentObjectController != null)
             {
                 processCurrentObjectController.ProcessCurrentObjectAction.Executing += ProcessCurrentObjectAction_Executing;
             }
@@ -47,39 +30,11 @@ namespace WLRegisterDataWebsite.Module.Controllers
         protected override void OnDeactivated()
         {
             base.OnDeactivated();
-            
-            if(newObjectViewController != null)
-            {
-                newObjectViewController.ObjectCreated -= NewObjectViewController_ObjectCreated;
-            }
-
-            if(deleteObjectsViewController != null)
-            {
-                deleteObjectsViewController.DeleteAction.Execute -= DeleteAction_Execute;
-            }
 
             if (processCurrentObjectController != null)
             {
                 processCurrentObjectController.ProcessCurrentObjectAction.Executing -= ProcessCurrentObjectAction_Executing;
             }
-        }
-        
-        private void NewObjectViewController_ObjectCreated(object sender, ObjectCreatedEventArgs e)
-        {
-            e.ObjectSpace.Committed += ObjectSpace_Committed;
-        }
-
-        private void ObjectSpace_Committed(object sender, System.EventArgs e)
-        {
-            if (View.CollectionSource.GetCount() + 1 == MaxCount)
-            {
-                newObjectViewController.NewObjectAction.Enabled.SetItemValue("DisableNewObjects", false);
-            }
-        }
-
-        private void DeleteAction_Execute(object sender, SimpleActionExecuteEventArgs e)
-        {
-            newObjectViewController.NewObjectAction.Enabled.Clear();
         }
 
         private void ProcessCurrentObjectAction_Executing(object sender, System.ComponentModel.CancelEventArgs e)
@@ -119,8 +74,8 @@ namespace WLRegisterDataWebsite.Module.Controllers
 
         private void AcceptAction_Execute(object sender, SimpleActionExecuteEventArgs e)
         {
-            View.CollectionSource.Remove(oldValue);
-            View.CollectionSource.Add(e.CurrentObject);
+            ((ListView)View).CollectionSource.Remove(oldValue);
+            ((ListView)View).CollectionSource.Add(e.CurrentObject);
         }
     }
 }

@@ -1,11 +1,14 @@
 ﻿using DevExpress.ExpressApp;
 using DevExpress.ExpressApp.DC;
 using System.Collections.Generic;
+using System.Linq;
+using WLRegisterDataWebsite.Module.BusinessObjects.Models;
+using WLRegisterDataWebsite.Module.Services.Abstract;
 
 namespace WLRegisterDataWebsite.Module.BusinessObjects.ApiModels
 {
     [DomainComponent]
-    public class EntryList : NonPersistentBaseObject
+    public class EntryList : NonPersistentBaseObject, IGetResult
     {
         private List<Entry> subject = new List<Entry>();
         private string requestDateTime;
@@ -27,6 +30,11 @@ namespace WLRegisterDataWebsite.Module.BusinessObjects.ApiModels
         {
             get => requestId;
             set => SetPropertyValue(ref requestId, value);
+        }
+
+        public IEnumerable<EntityModel> GetResult()
+        {
+            return Entries?.SelectMany(x => x.GetResult());
         }
     }
 }

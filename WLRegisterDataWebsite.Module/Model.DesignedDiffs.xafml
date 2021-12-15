@@ -27,6 +27,9 @@
     <SchemaModule Name="SystemModule" Version="21.2.3.0" IsNewNode="True" />
   </SchemaModules>
   <Views>
+    <DetailView Id="AccountNumberModel_DetailView" AllowDelete="False" AllowEdit="False" AllowNew="False" />
+    <ListView Id="AccountNumberModel_ListView" AllowDelete="False" AllowLink="False" AllowNew="False" />
+    <ListView Id="AccountNumberModel_LookupListView" AllowDelete="False" AllowLink="False" AllowNew="False" />
     <DetailView Id="CheckSubject_DetailView">
       <HiddenActions>
         <ActionLink ActionId="Close" IsNewNode="True" />
@@ -52,7 +55,8 @@
     </DetailView>
     <DetailView Id="EntityItem_DetailView" AllowEdit="False" />
     <DetailView Id="EntityList_DetailView" AllowEdit="False" />
-    <DetailView Id="EntityListResponse_DetailView">
+    <ListView Id="EntityList_Subjects_ListView" AllowDelete="False" AllowLink="False" AllowNew="False" />
+    <DetailView Id="EntityListResponse_DetailView" AllowEdit="False" AllowDelete="False" AllowNew="False">
       <HiddenActions>
         <ActionLink ActionId="Close" IsNewNode="True" />
         <ActionLink ActionId="Delete" IsNewNode="True" />
@@ -60,15 +64,27 @@
         <ActionLink ActionId="Refresh" IsNewNode="True" />
         <ActionLink ActionId="Save" IsNewNode="True" />
       </HiddenActions>
+    </DetailView>
+    <ListView Id="EntityListResponse_ListView" AllowDelete="False" AllowLink="False" AllowNew="False" />
+    <ListView Id="EntityListResponse_LookupListView" AllowDelete="False" AllowLink="False" AllowNew="False" />
+    <ListView Id="EntityModel_AuthorizedClerks_ListView" AllowDelete="False" AllowLink="False" AllowNew="False" />
+    <ListView Id="EntityModel_BankAccounts_ListView" AllowDelete="False" AllowLink="False" AllowNew="False" />
+    <DetailView Id="EntityModel_DetailView" AllowDelete="False" AllowEdit="False" AllowNew="False">
       <Items>
-        <PropertyEditor Id="Result.Subject" LinkView="EntityModel_ListView" />
+        <PropertyEditor Id="AccountNumbers" Removed="True" />
       </Items>
     </DetailView>
-    <ListView Id="EntityModel_ListView">
+    <ListView Id="EntityModel_ListView" AllowDelete="False" AllowLink="False" AllowNew="False">
       <Columns>
         <ColumnInfo Id="Name" SortOrder="Ascending" />
       </Columns>
     </ListView>
+    <ListView Id="EntityModel_LookupListView" AllowDelete="False" AllowLink="False" AllowNew="False" />
+    <ListView Id="EntityModel_Partners_ListView" AllowDelete="False" AllowLink="False" AllowNew="False" />
+    <ListView Id="EntityModel_Representatives_ListView" AllowDelete="False" AllowLink="False" AllowNew="False" />
+    <DetailView Id="EntityPersonModel_DetailView" AllowDelete="False" AllowEdit="False" AllowNew="False" />
+    <ListView Id="EntityPersonModel_ListView" AllowDelete="False" AllowLink="False" AllowNew="False" />
+    <ListView Id="EntityPersonModel_LookupListView" AllowDelete="False" AllowLink="False" AllowNew="False" />
     <DetailView Id="EntityResponse_DetailView" AllowEdit="False" AllowDelete="False" AllowNew="False" DefaultFocusedItem="Result.RequestDateTime">
       <HiddenActions>
         <ActionLink ActionId="Close" IsNewNode="True" />
@@ -78,6 +94,12 @@
         <ActionLink ActionId="Save" IsNewNode="True" />
       </HiddenActions>
     </DetailView>
+    <ListView Id="EntityResponse_ListView" AllowDelete="False" AllowLink="False" AllowNew="False" />
+    <ListView Id="EntityResponse_LookupListView" AllowDelete="False" AllowLink="False" AllowNew="False" />
+    <DetailView Id="Entry_DetailView" AllowDelete="False" AllowEdit="False" AllowNew="False" />
+    <ListView Id="Entry_ListView" AllowDelete="False" AllowLink="False" AllowNew="False" />
+    <ListView Id="Entry_LookupListView" AllowDelete="False" AllowNew="False" />
+    <ListView Id="Entry_Subjects_ListView" AllowDelete="False" AllowLink="False" AllowNew="False" />
     <DetailView Id="EntryError_DetailView">
       <HiddenActions>
         <ActionLink ActionId="Close" IsNewNode="True" />
@@ -87,7 +109,8 @@
         <ActionLink ActionId="Save" IsNewNode="True" />
       </HiddenActions>
     </DetailView>
-    <DetailView Id="EntryListResponse_DetailView">
+    <ListView Id="EntryList_Entries_ListView" AllowDelete="False" AllowLink="False" AllowNew="False" />
+    <DetailView Id="EntryListResponse_DetailView" AllowEdit="False" AllowDelete="False" AllowNew="False">
       <HiddenActions>
         <ActionLink ActionId="Close" IsNewNode="True" />
         <ActionLink ActionId="Delete" IsNewNode="True" />
@@ -96,6 +119,8 @@
         <ActionLink ActionId="Save" IsNewNode="True" />
       </HiddenActions>
     </DetailView>
+    <ListView Id="EntryListResponse_ListView" AllowDelete="False" AllowLink="False" AllowNew="False" />
+    <ListView Id="EntryListResponse_LookupListView" AllowDelete="False" AllowLink="False" AllowNew="False" />
     <DetailView Id="ExceptionModel_DetailView" AllowEdit="False">
       <HiddenActions>
         <ActionLink ActionId="Close" IsNewNode="True" />

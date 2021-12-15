@@ -1,16 +1,14 @@
 ﻿using DevExpress.ExpressApp;
 using DevExpress.ExpressApp.DC;
 using DevExpress.Persistent.Base;
-using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using WLRegisterDataWebsite.Module.BusinessObjects.Models;
+using WLRegisterDataWebsite.Module.Services.Abstract;
 
 namespace WLRegisterDataWebsite.Module.BusinessObjects.ApiModels.Responses
 {
     [DomainComponent]
-    public class EntryListResponse : NonPersistentBaseObject
+    public class EntryListResponse : NonPersistentBaseObject, IGetResult
     {
         private EntryList result;
 
@@ -19,6 +17,11 @@ namespace WLRegisterDataWebsite.Module.BusinessObjects.ApiModels.Responses
         {
             get => result;
             set => SetPropertyValue(ref result, value);
+        }
+
+        public IEnumerable<EntityModel> GetResult()
+        {
+            return Result?.GetResult();
         }
     }
 }

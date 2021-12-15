@@ -1,4 +1,5 @@
-﻿using System;
+﻿using DevExpress.ExpressApp;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -23,9 +24,14 @@ namespace WLRegisterDataWebsite.Module.Services
 
         public async Task<object> Search(SearchSubject model, SearchOption selectedOption)
         {
-            var strategy = SearchApiFactory.GetStrategy(ProductionUri, model, selectedOption);
+            var strategy = SearchApiFactory.GetStrategy(_httpClient, TestUri, model, selectedOption);
             var result = await strategy.Search();
             return result;
+        }
+
+        public void SaveResults(IObjectSpace objectSpace, object result)
+        {
+            throw new NotImplementedException();
         }
     }
 }

@@ -7,19 +7,20 @@ namespace WLRegisterDataWebsite.Module.Services.ApiSearch
 {
     public static class SearchApiFactory
     {
-         public static IApiSearchStrategy GetStrategy(string url, SearchSubject model, SearchOption selectedOption)
+         public static IApiSearchStrategy GetStrategy(ICustomHttpClient customHttpClient, string url, SearchSubject model, SearchOption selectedOption)
         {
             if (model == null)
                 throw new ArgumentNullException(nameof(model));
 
+            var baseUri = $@"{url}/api/search";
             switch (selectedOption)
             {
                 case SearchOption.BankAccount:
-                    return new SearchBankAccountStrategy(url, model.BankAccount, model.Date);
+                    return new SearchBankAccountStrategy(customHttpClient, $@"{baseUri}/bank-account", model.BankAccount, model.Date);
                 case SearchOption.Nip:
-                    return new SearchNipStrategy(url, model.Nip, model.Date);
+                    return new SearchStrategyBase(customHttpClient, $@"{baseUri}/nip", model.Nip, model.Date);
                 case SearchOption.Regon:
-                    return new SearchRegonStrategy(url, model.Regon, model.Date);
+                    return new SearchStrategyBase(customHttpClient, $@"{baseUri}/regon", model.Nip, model.Date);
                 default:
                     throw new ArgumentOutOfRangeException(nameof(selectedOption));
             }

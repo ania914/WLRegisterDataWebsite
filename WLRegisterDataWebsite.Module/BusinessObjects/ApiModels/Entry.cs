@@ -2,14 +2,16 @@
 using DevExpress.ExpressApp.DC;
 using System.Collections.Generic;
 using WLRegisterDataWebsite.Module.BusinessObjects.Models;
+using WLRegisterDataWebsite.Module.Services.Abstract;
 
 namespace WLRegisterDataWebsite.Module.BusinessObjects.ApiModels
 {
     [DomainComponent]
-    public class Entry : NonPersistentBaseObject
+    public class Entry : NonPersistentBaseObject, IGetResult
     {
         private string identifier;
         private List<EntityModel> subjects = new List<EntityModel>();
+        private ExceptionModel exception;
 
         public string Identifier
         {
@@ -21,6 +23,17 @@ namespace WLRegisterDataWebsite.Module.BusinessObjects.ApiModels
         {
             get => subjects;
             set => SetPropertyValue(ref subjects, value);
+        }
+
+        public ExceptionModel Exception
+        {
+            get => exception;
+            set => SetPropertyValue(ref exception, value);
+        }
+
+        public IEnumerable<EntityModel> GetResult()
+        {
+            return Subjects;
         }
     }
 }

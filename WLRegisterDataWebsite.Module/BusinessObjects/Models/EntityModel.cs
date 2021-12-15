@@ -1,8 +1,10 @@
 ﻿using DevExpress.ExpressApp;
+using DevExpress.ExpressApp.ConditionalAppearance;
 using DevExpress.ExpressApp.DC;
 using DevExpress.Persistent.Base;
 using System;
 using System.Collections.Generic;
+using System.Text.Json.Serialization;
 using WLRegisterDataWebsite.Module.Enums;
 
 namespace WLRegisterDataWebsite.Module.BusinessObjects.Models
@@ -19,9 +21,9 @@ namespace WLRegisterDataWebsite.Module.BusinessObjects.Models
         private string krs;
         private string residenceAddress;
         private string workingAddress;
-        private List<EntityPersonModel> representatives;
-        private List<EntityPersonModel> authorizedClerks;
-        private List<EntityPersonModel> partners;
+        private List<EntityPersonModel> representatives = new List<EntityPersonModel>();
+        private List<EntityPersonModel> authorizedClerks = new List<EntityPersonModel>();
+        private List<EntityPersonModel> partners = new List<EntityPersonModel>();
         private DateTime? registrationLegalDate;
         private DateTime? registrationDenialDate;
         private string registrationDenialBasis;
@@ -29,8 +31,9 @@ namespace WLRegisterDataWebsite.Module.BusinessObjects.Models
         private string restorationBasis;
         private DateTime? removalDate;
         private string removalBasis;
-        private List<string> accountNumbers;
+        private List<AccountNumberModel> bankAccounts = new List<AccountNumberModel>();
         private bool hasVirtualAccounts;
+        private List<string> accountNumbers;
 
         public string Name
         {
@@ -121,11 +124,30 @@ namespace WLRegisterDataWebsite.Module.BusinessObjects.Models
             get => removalBasis;
             set => SetPropertyValue(ref removalBasis, value);
         }
+
         public List<string> AccountNumbers
         {
-            get => accountNumbers;
-            set => SetPropertyValue(ref accountNumbers, value);
+            get => accountNumbers; 
+            set
+            {
+                accountNumbers = value;
+                if (accountNumbers == null)
+                    return;
+
+                BankAccounts.Clear();
+                foreach(var account in accountNumbers)
+                {
+                    BankAccounts.Add(new AccountNumberModel { Number = account });
+                }
+            }
         }
+
+        public List<AccountNumberModel> BankAccounts
+        {
+            get => bankAccounts;
+            set => SetPropertyValue(ref bankAccounts, value);
+        }
+
         public bool HasVirtualAccounts
         {
             get => hasVirtualAccounts;

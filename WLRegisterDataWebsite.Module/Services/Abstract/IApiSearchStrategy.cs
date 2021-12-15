@@ -1,4 +1,5 @@
-﻿using System.Threading.Tasks;
+﻿using DevExpress.ExpressApp;
+using System.Threading.Tasks;
 
 namespace WLRegisterDataWebsite.Module.Services.Abstract
 {
