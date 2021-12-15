@@ -43,4 +43,7 @@
       <DependentUpon>Model.DesignedDiffs.xafml</DependentUpon>
     </None>
   </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Controllers\SubjectControllers\" />
+  </ItemGroup>
 </Project>

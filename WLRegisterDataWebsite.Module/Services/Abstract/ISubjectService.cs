@@ -8,6 +8,6 @@ namespace WLRegisterDataWebsite.Module.Services
     public interface ISubjectService
     {
         Task<object> Search(SearchSubject model, SearchOption selectedOption);
-        void SaveResults(IObjectSpace objectSpace, object result);
+        Task SaveResults(IObjectSpace objectSpace, object result);
     }
 }

@@ -14,6 +14,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using WLRegisterDataWebsite.Module.BusinessObjects;
+using WLRegisterDataWebsite.Module.BusinessObjects.ApiModels;
 using WLRegisterDataWebsite.Module.Enums;
 using WLRegisterDataWebsite.Module.Services;
 
@@ -25,13 +26,12 @@ namespace WLRegisterDataWebsite.Module.Controllers.SearchControllers
         private SimpleAction searchAction;
         private SelectSearchOptionController selectSearchOptionController;
         private SearchOption? selectedOption;
-        private readonly ISubjectService subjectService;
+        private ISubjectService subjectService;
 
         public SearchActionController()
         {
             InitializeComponent();
 
-            subjectService = new SubjectService(new CustomHttpClient());
             TargetObjectType = typeof(SearchSubject);
             searchAction = new SimpleAction(this, SearchActionName, PredefinedCategory.View)
             {
@@ -70,8 +70,11 @@ namespace WLRegisterDataWebsite.Module.Controllers.SearchControllers
             if (!selectedOption.HasValue)
                 return;
 
+            subjectService = new SubjectService(new CustomHttpClient(), new DatabaseService(Application.ConnectionString));
             var searchSubject = View.CurrentObject as SearchSubject;
             var response = await subjectService.Search(searchSubject, selectedOption.Value);
+            var entitySpace = Application.CreateNestedObjectSpace(View.ObjectSpace);
+            await subjectService.SaveResults(entitySpace, response);
             var objectSpace = View.ObjectSpace.CreateNestedObjectSpace();
             var detailView = Application.CreateDetailView(objectSpace, response, true);
             Frame.SetView(detailView);

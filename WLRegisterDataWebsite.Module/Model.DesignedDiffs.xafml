@@ -16,6 +16,7 @@
           <Item Id="CheckSubject_ListView" Index="3" ViewId="CheckSubject_DetailView" />
           <Item Id="BankAccount_ListView" Removed="True" />
           <Item Id="EntityItem_ListView" Removed="True" />
+          <Item Id="EntityModel_ListView" Removed="True" />
           <Item Id="Nip_ListView" Visible="False" Removed="True" />
           <Item Id="ParameterBase_ListView" Visible="False" Removed="True" />
           <Item Id="Regon_ListView" Visible="False" Removed="True" />

@@ -6,6 +6,7 @@ namespace WLRegisterDataWebsite.Module.BusinessObjects.ApiModels
     public class AccountNumber : BaseObject
     {
         private string number;
+
         public AccountNumber(Session session) : base(session)
         {
         }
