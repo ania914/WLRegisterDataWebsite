@@ -1,15 +1,24 @@
-﻿using DevExpress.ExpressApp.DC;
+﻿using DevExpress.Data.Filtering;
+using DevExpress.ExpressApp;
+using DevExpress.ExpressApp.DC;
+using DevExpress.ExpressApp.Model;
 using DevExpress.Persistent.Base;
 using DevExpress.Persistent.BaseImpl;
+using DevExpress.Persistent.Validation;
 using DevExpress.Xpo;
 using System;
+using System.Collections.Generic;
+using System.ComponentModel;
+using System.Linq;
+using System.Text;
 using WLRegisterDataWebsite.Module.Enums;
+
 
 namespace WLRegisterDataWebsite.Module.BusinessObjects.ApiModels
 {
-    [DomainComponent, DefaultClassOptions, XafDisplayName("Subjects")]
-    public class Entity : BaseObject
-    {
+    [DefaultClassOptions]
+    public class ApiEntity : BaseObject
+    { // Inherit from a different class to provide a custom primary key, concurrency and deletion behavior, etc. (https://documentation.devexpress.com/eXpressAppFramework/CustomDocument113146.aspx).
         private string name;
         private string nip;
         private StatusVat statusVat;
@@ -26,11 +35,15 @@ namespace WLRegisterDataWebsite.Module.BusinessObjects.ApiModels
         private DateTime? removalDate;
         private string removalBasis;
         private bool hasVirtualAccounts;
-
-        public Entity(Session session) : base(session)
+        public ApiEntity(Session session)
+            : base(session)
         {
         }
-
+        public override void AfterConstruction()
+        {
+            base.AfterConstruction();
+            // Place your initialization code here (https://documentation.devexpress.com/eXpressAppFramework/CustomDocument112834.aspx).
+        }
         public string Name
         {
             get => name;

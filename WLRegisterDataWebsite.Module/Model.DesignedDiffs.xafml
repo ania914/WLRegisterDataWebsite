@@ -11,7 +11,7 @@
     <Items>
       <Item Id="Default">
         <Items>
-          <Item Id="Entity_ListView" Index="1" />
+          <Item Id="ApiEntity_ListView" Index="1" Caption="Subjects" />
           <Item Id="SearchSubject_ListView" Index="2" ViewId="SearchSubject_DetailView" />
           <Item Id="CheckSubject_ListView" Index="3" ViewId="CheckSubject_DetailView" />
           <Item Id="BankAccount_ListView" Removed="True" />
@@ -28,9 +28,13 @@
     <SchemaModule Name="SystemModule" Version="21.2.3.0" IsNewNode="True" />
   </SchemaModules>
   <Views>
+    <ListView Id="AccountNumber_AccountNumberEntities_ListView" AllowDelete="False" AllowLink="False" AllowNew="False" />
     <DetailView Id="AccountNumberModel_DetailView" AllowDelete="False" AllowEdit="False" AllowNew="False" />
     <ListView Id="AccountNumberModel_ListView" AllowDelete="False" AllowLink="False" AllowNew="False" />
     <ListView Id="AccountNumberModel_LookupListView" AllowDelete="False" AllowLink="False" AllowNew="False" />
+    <DetailView Id="ApiEntity_DetailView" AllowEdit="False" AllowDelete="False" AllowNew="False" />
+    <ListView Id="ApiEntity_ListView" AllowNew="False" AllowDelete="False" />
+    <ListView Id="ApiEntity_LookupListView" AllowDelete="False" AllowLink="False" AllowNew="False" />
     <DetailView Id="CheckSubject_DetailView">
       <HiddenActions>
         <ActionLink ActionId="Close" IsNewNode="True" />
@@ -83,6 +87,9 @@
     <ListView Id="EntityModel_LookupListView" AllowDelete="False" AllowLink="False" AllowNew="False" />
     <ListView Id="EntityModel_Partners_ListView" AllowDelete="False" AllowLink="False" AllowNew="False" />
     <ListView Id="EntityModel_Representatives_ListView" AllowDelete="False" AllowLink="False" AllowNew="False" />
+    <ListView Id="EntityPerson_AuthorizedClerksEntities_ListView" AllowDelete="False" AllowLink="False" AllowNew="False" />
+    <ListView Id="EntityPerson_PartnersEntities_ListView" AllowDelete="False" AllowLink="False" AllowNew="False" />
+    <ListView Id="EntityPerson_RepresentativesEntities_ListView" AllowDelete="False" AllowLink="False" AllowNew="False" />
     <DetailView Id="EntityPersonModel_DetailView" AllowDelete="False" AllowEdit="False" AllowNew="False" />
     <ListView Id="EntityPersonModel_ListView" AllowDelete="False" AllowLink="False" AllowNew="False" />
     <ListView Id="EntityPersonModel_LookupListView" AllowDelete="False" AllowLink="False" AllowNew="False" />

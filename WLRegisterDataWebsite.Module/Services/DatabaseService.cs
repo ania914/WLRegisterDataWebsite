@@ -18,16 +18,16 @@ namespace WLRegisterDataWebsite.Module.Services
             this.connectionString = connectionString;
         }
 
-        public IEnumerable<Entity> GetEntitiesAsync()
+        public IEnumerable<ApiEntity> GetEntitiesAsync()
         {
             var inMemoryDAL = XpoDefault.GetDataLayer(connectionString, DevExpress.Xpo.DB.AutoCreateOption.DatabaseAndSchema);
             using (var unitOfWork = new UnitOfWork(inMemoryDAL))
             {
-                return unitOfWork.Query<Entity>().AsEnumerable();
+                return unitOfWork.Query<ApiEntity>().AsEnumerable();
             }
         }
 
-        public async Task<Entity> CreateEntity(EntityModel model)
+        public async Task<ApiEntity> CreateEntity(EntityModel model)
         {
             var inMemoryDAL = XpoDefault.GetDataLayer(connectionString, DevExpress.Xpo.DB.AutoCreateOption.DatabaseAndSchema);
             using (var unitOfWork = new UnitOfWork(inMemoryDAL))
@@ -37,7 +37,7 @@ namespace WLRegisterDataWebsite.Module.Services
                 var regon = ParseCriteriaParam(model.Regon);
 
                 var criteria = CriteriaOperator.Parse($"[Pesel] {pesel} && [Nip] {nip} && [Regon] {regon}");
-                var dbEntity = await unitOfWork.FindObjectAsync<Entity>(criteria);
+                var dbEntity = await unitOfWork.FindObjectAsync<ApiEntity>(criteria);
                 if (dbEntity != null)
                     return dbEntity;
 
@@ -52,9 +52,9 @@ namespace WLRegisterDataWebsite.Module.Services
             return string.IsNullOrEmpty(value) ? "IS NULL" : $"== '{value}'";
         }
 
-        private async Task<Entity> Map(UnitOfWork uow, EntityModel model)
+        private async Task<ApiEntity> Map(UnitOfWork uow, EntityModel model)
         {
-            var entity = new Entity(uow);
+            var entity = new ApiEntity(uow);
             entity.Name = model.Name;
             entity.Nip = model.Nip;
             entity.StatusVat = model.StatusVat;

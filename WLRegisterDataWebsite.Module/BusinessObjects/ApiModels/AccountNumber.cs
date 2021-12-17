@@ -18,9 +18,9 @@ namespace WLRegisterDataWebsite.Module.BusinessObjects.ApiModels
         }
 
         [Association("Entity-AccountNumbers")]
-        public XPCollection<Entity> AccountNumberEntities
+        public XPCollection<ApiEntity> AccountNumberEntities
         {
-            get => GetCollection<Entity>(nameof(AccountNumberEntities));
+            get => GetCollection<ApiEntity>(nameof(AccountNumberEntities));
         }
     }
 }

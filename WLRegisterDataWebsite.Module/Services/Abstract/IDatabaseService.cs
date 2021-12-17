@@ -7,7 +7,7 @@ namespace WLRegisterDataWebsite.Module.Services.Abstract
 {
     public interface IDatabaseService
     {
-        Task<Entity> CreateEntity(EntityModel model);
-        IEnumerable<Entity> GetEntitiesAsync();
+        Task<ApiEntity> CreateEntity(EntityModel model);
+        IEnumerable<ApiEntity> GetEntitiesAsync();
     }
 }

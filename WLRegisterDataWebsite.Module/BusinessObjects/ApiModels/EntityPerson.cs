@@ -49,21 +49,21 @@ namespace WLRegisterDataWebsite.Module.BusinessObjects.ApiModels
         }
 
         [Association("Entity-Representatives")]
-        public XPCollection<Entity> RepresentativesEntities
+        public XPCollection<ApiEntity> RepresentativesEntities
         {
-            get => GetCollection<Entity>(nameof(RepresentativesEntities));
+            get => GetCollection<ApiEntity>(nameof(RepresentativesEntities));
         }
 
         [Association("Entity-AuthorizedClerks")]
-        public XPCollection<Entity> AuthorizedClerksEntities
+        public XPCollection<ApiEntity> AuthorizedClerksEntities
         {
-            get => GetCollection<Entity>(nameof(AuthorizedClerksEntities));
+            get => GetCollection<ApiEntity>(nameof(AuthorizedClerksEntities));
         }
 
         [Association("Entity-Partners")]
-        public XPCollection<Entity> PartnersEntities
+        public XPCollection<ApiEntity> PartnersEntities
         {
-            get => GetCollection<Entity>(nameof(PartnersEntities));
+            get => GetCollection<ApiEntity>(nameof(PartnersEntities));
         }
     }
 }
