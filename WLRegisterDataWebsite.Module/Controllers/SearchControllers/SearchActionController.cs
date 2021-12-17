@@ -1,20 +1,7 @@
-﻿using DevExpress.Data.Filtering;
-using DevExpress.ExpressApp;
+﻿using DevExpress.ExpressApp;
 using DevExpress.ExpressApp.Actions;
-using DevExpress.ExpressApp.Editors;
-using DevExpress.ExpressApp.Layout;
-using DevExpress.ExpressApp.Model.NodeGenerators;
-using DevExpress.ExpressApp.SystemModule;
-using DevExpress.ExpressApp.Templates;
-using DevExpress.ExpressApp.Utils;
 using DevExpress.Persistent.Base;
-using DevExpress.Persistent.Validation;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using WLRegisterDataWebsite.Module.BusinessObjects;
-using WLRegisterDataWebsite.Module.BusinessObjects.ApiModels;
 using WLRegisterDataWebsite.Module.Enums;
 using WLRegisterDataWebsite.Module.Services;
 
@@ -23,6 +10,8 @@ namespace WLRegisterDataWebsite.Module.Controllers.SearchControllers
     public partial class SearchActionController : ViewController
     {
         private const string SearchActionName = "SearchAction";
+        private const string ChangeBaseUrl = "ChangeBaseUrl";
+        private SimpleAction changeBaseUrl;
         private SimpleAction searchAction;
         private SelectSearchOptionController selectSearchOptionController;
         private SearchOption? selectedOption;
@@ -33,6 +22,11 @@ namespace WLRegisterDataWebsite.Module.Controllers.SearchControllers
             InitializeComponent();
 
             TargetObjectType = typeof(SearchSubject);
+
+            changeBaseUrl = new SimpleAction(this, ChangeBaseUrl, PredefinedCategory.View)
+            {
+                Caption = ""
+            };
             searchAction = new SimpleAction(this, SearchActionName, PredefinedCategory.View)
             {
                 Caption = "Search"
@@ -42,12 +36,18 @@ namespace WLRegisterDataWebsite.Module.Controllers.SearchControllers
         protected override void OnActivated()
         {
             base.OnActivated();
+            if(subjectService == null)
+            {
+                subjectService = new SubjectService(new CustomHttpClient(), new DatabaseService(Application.ConnectionString));
+            }
             selectSearchOptionController = Frame.GetController<SelectSearchOptionController>();
             if(selectSearchOptionController != null)
             {
                 selectSearchOptionController.OnSelectionChanged += OnSelectionChanged;
             }
+            changeBaseUrl.Execute += ChangeBaseUrl_Execute;
             searchAction.Execute += SearchAction_Execute;
+            UpdateChangeActionCaption();
         }
 
         protected override void OnViewControlsCreated()
@@ -63,6 +63,8 @@ namespace WLRegisterDataWebsite.Module.Controllers.SearchControllers
             {
                 selectSearchOptionController.OnSelectionChanged += OnSelectionChanged;
             }
+            changeBaseUrl.Execute -= ChangeBaseUrl_Execute;
+            searchAction.Execute -= SearchAction_Execute;
         }
 
         private async void SearchAction_Execute(object sender, SimpleActionExecuteEventArgs e)
@@ -70,7 +72,6 @@ namespace WLRegisterDataWebsite.Module.Controllers.SearchControllers
             if (!selectedOption.HasValue)
                 return;
 
-            subjectService = new SubjectService(new CustomHttpClient(), new DatabaseService(Application.ConnectionString));
             var searchSubject = View.CurrentObject as SearchSubject;
             var response = await subjectService.Search(searchSubject, selectedOption.Value);
             var entitySpace = Application.CreateNestedObjectSpace(View.ObjectSpace);
@@ -80,9 +81,20 @@ namespace WLRegisterDataWebsite.Module.Controllers.SearchControllers
             Frame.SetView(detailView);
         }
 
+        private void ChangeBaseUrl_Execute(object sender, SimpleActionExecuteEventArgs e)
+        {
+            subjectService.ChangeBaseUrl();
+            UpdateChangeActionCaption();
+        }
+
         private void OnSelectionChanged(object sender, SearchOption searchOption)
         {
             selectedOption = searchOption;
+        }
+
+        private void UpdateChangeActionCaption()
+        {
+            changeBaseUrl.Caption = subjectService.UseTestUrl ? "Use production" : "Use Test";
         }
     }
 }

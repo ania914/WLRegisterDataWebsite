@@ -8,7 +8,7 @@ using WLRegisterDataWebsite.Module.Services.Abstract;
 namespace WLRegisterDataWebsite.Module.BusinessObjects.ApiModels
 {
     [DomainComponent]
-    public class EntryList : NonPersistentBaseObject, IGetResult
+    public class EntryList : NonPersistentBaseObject, IGetResult, ICacheResult
     {
         private List<Entry> subject = new List<Entry>();
         private string requestDateTime;
@@ -30,6 +30,14 @@ namespace WLRegisterDataWebsite.Module.BusinessObjects.ApiModels
         {
             get => requestId;
             set => SetPropertyValue(ref requestId, value);
+        }
+
+        public void AddCachedData(IEnumerable<EntityModel> entityModels)
+        {
+            if (Entries == null)
+                Entries = new List<Entry>();
+
+            Entries.Add(new Entry() { Subjects = entityModels.ToList() });
         }
 
         public IEnumerable<EntityModel> GetResult()

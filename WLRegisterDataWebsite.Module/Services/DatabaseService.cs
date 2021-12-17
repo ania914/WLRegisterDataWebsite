@@ -1,10 +1,13 @@
 ﻿using DevExpress.Data.Filtering;
 using DevExpress.Xpo;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using WLRegisterDataWebsite.Module.BusinessObjects.ApiModels;
 using WLRegisterDataWebsite.Module.BusinessObjects.Models;
+using WLRegisterDataWebsite.Module.Enums;
+using WLRegisterDataWebsite.Module.Extensions;
 using WLRegisterDataWebsite.Module.Services.Abstract;
 
 namespace WLRegisterDataWebsite.Module.Services
@@ -27,14 +30,31 @@ namespace WLRegisterDataWebsite.Module.Services
             }
         }
 
+        public async Task<List<EntityModel>> GetEntityByOption(SearchOption option, string value)
+        {
+            var inMemoryDAL = XpoDefault.GetDataLayer(connectionString, DevExpress.Xpo.DB.AutoCreateOption.DatabaseAndSchema);
+            using (var unitOfWork = new UnitOfWork(inMemoryDAL))
+            {
+                if(option == SearchOption.BankAccount)
+                {
+                    var entities = await GetEntityByAccountNumber(unitOfWork, value);
+                    return entities.Distinct().Select(x=> EntityMapper.Map(x)).ToList();
+                }
+                var columnName = option.ToString();
+                var entity = await GetEntity(unitOfWork, columnName, value);
+
+                return entity != null ? new List<EntityModel>() { entity } : new List<EntityModel>();
+            }
+        }
+
         public async Task<ApiEntity> CreateEntity(EntityModel model)
         {
             var inMemoryDAL = XpoDefault.GetDataLayer(connectionString, DevExpress.Xpo.DB.AutoCreateOption.DatabaseAndSchema);
             using (var unitOfWork = new UnitOfWork(inMemoryDAL))
             {
-                var pesel = ParseCriteriaParam(model.Pesel);
-                var nip = ParseCriteriaParam(model.Nip);
-                var regon = ParseCriteriaParam(model.Regon);
+                var pesel = ParseCriteriaParam(model?.Pesel);
+                var nip = ParseCriteriaParam(model?.Nip);
+                var regon = ParseCriteriaParam(model?.Regon);
 
                 var criteria = CriteriaOperator.Parse($"[Pesel] {pesel} && [Nip] {nip} && [Regon] {regon}");
                 var dbEntity = await unitOfWork.FindObjectAsync<ApiEntity>(criteria);
@@ -137,6 +157,29 @@ namespace WLRegisterDataWebsite.Module.Services
             var newAccount = new AccountNumber(uow);
             newAccount.Number = model.Number;
             return newAccount;
+        }
+
+        private async Task<EntityModel> GetEntity(UnitOfWork uow, string columnName, string value)
+        {
+            if (string.IsNullOrEmpty(value))
+                throw new ArgumentException("Filter value can not be empty", nameof(value));
+
+            var criteria = CriteriaOperator.Parse($"[{columnName}] = '{value}'");
+            var entity = await uow.FindObjectAsync<ApiEntity>(criteria);
+
+            return EntityMapper.Map(entity);
+        }
+
+        private async Task<List<ApiEntity>> GetEntityByAccountNumber(UnitOfWork uow, string number)
+        {
+            if (string.IsNullOrEmpty(number))
+                throw new ArgumentException("Filter value can not be empty", nameof(number));
+
+            var entities = await uow.Query<ApiEntity>().Where(e => e.AccountNumbers.Any(x => x.Number == number)).Distinct().ToListAsync();
+            if (entities == null)
+                return new List<ApiEntity>();
+
+            return entities ?? new List<ApiEntity>();
         }
     }
 }

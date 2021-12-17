@@ -8,7 +8,7 @@ using WLRegisterDataWebsite.Module.Services.Abstract;
 namespace WLRegisterDataWebsite.Module.BusinessObjects.ApiModels.Responses
 {
     [DomainComponent]
-    public class EntityListResponse: NonPersistentBaseObject, IGetResult
+    public class EntityListResponse: NonPersistentBaseObject, IGetResult, ICacheResult
     {
         private EntityList result;
 
@@ -17,6 +17,14 @@ namespace WLRegisterDataWebsite.Module.BusinessObjects.ApiModels.Responses
         {
             get => result;
             set => SetPropertyValue(ref result, value);
+        }
+
+        public void AddCachedData(IEnumerable<EntityModel> entityModels)
+        {
+            if (Result == null)
+                Result = new EntityList();
+
+            Result.AddCachedData(entityModels);
         }
 
         public IEnumerable<EntityModel> GetResult()

@@ -7,7 +7,10 @@ namespace WLRegisterDataWebsite.Module.Services
 {
     public interface ISubjectService
     {
+        bool UseTestUrl { get; }
+
         Task<object> Search(SearchSubject model, SearchOption selectedOption);
         Task SaveResults(IObjectSpace objectSpace, object result);
+        void ChangeBaseUrl();
     }
 }

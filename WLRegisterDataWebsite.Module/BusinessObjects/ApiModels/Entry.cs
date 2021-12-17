@@ -31,6 +31,11 @@ namespace WLRegisterDataWebsite.Module.BusinessObjects.ApiModels
             set => SetPropertyValue(ref exception, value);
         }
 
+        public void AddCachedData(IEnumerable<EntityModel> entityModels)
+        {
+            Subjects.AddRange(entityModels);
+        }
+
         public IEnumerable<EntityModel> GetResult()
         {
             return Subjects;

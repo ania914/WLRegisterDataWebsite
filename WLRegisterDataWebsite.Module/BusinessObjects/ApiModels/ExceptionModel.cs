@@ -1,5 +1,8 @@
 ﻿using DevExpress.ExpressApp;
 using DevExpress.ExpressApp.DC;
+using System.Collections.Generic;
+using WLRegisterDataWebsite.Module.BusinessObjects.Models;
+using WLRegisterDataWebsite.Module.Services.Abstract;
 
 namespace WLRegisterDataWebsite.Module.BusinessObjects.ApiModels
 {

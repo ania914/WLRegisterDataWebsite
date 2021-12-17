@@ -16,7 +16,7 @@ namespace WLRegisterDataWebsite.Module.Services.ApiSearch
         protected override object DeserializeApiResult(string result)
         {
             object deserializedObject;
-            if (Parameters.Count == 1)
+            if (ParametersCount == 1)
             {
                 deserializedObject = JsonConvert.DeserializeObject<EntityListResponse>(result, new JsonSerializerSettings
                 {

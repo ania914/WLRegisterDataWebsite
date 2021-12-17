@@ -20,7 +20,7 @@ namespace WLRegisterDataWebsite.Module.Services.ApiSearch
                 case SearchOption.Nip:
                     return new SearchStrategyBase(customHttpClient, $@"{baseUri}/nip", model.Nip, model.Date);
                 case SearchOption.Regon:
-                    return new SearchStrategyBase(customHttpClient, $@"{baseUri}/regon", model.Nip, model.Date);
+                    return new SearchStrategyBase(customHttpClient, $@"{baseUri}/regon", model.Regon, model.Date);
                 default:
                     throw new ArgumentOutOfRangeException(nameof(selectedOption));
             }

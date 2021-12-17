@@ -1,10 +1,9 @@
 ﻿using DevExpress.ExpressApp;
-using DevExpress.ExpressApp.ConditionalAppearance;
 using DevExpress.ExpressApp.DC;
 using DevExpress.Persistent.Base;
 using System;
 using System.Collections.Generic;
-using System.Text.Json.Serialization;
+using System.Diagnostics.CodeAnalysis;
 using WLRegisterDataWebsite.Module.Enums;
 
 namespace WLRegisterDataWebsite.Module.BusinessObjects.Models
@@ -152,6 +151,19 @@ namespace WLRegisterDataWebsite.Module.BusinessObjects.Models
         {
             get => hasVirtualAccounts;
             set => SetPropertyValue(ref hasVirtualAccounts, value);
+        }
+
+        public override bool Equals(object obj)
+        {
+            if (obj is not EntityModel model)
+                return false;
+
+            return Nip == model.Nip && Pesel == model.Pesel && Regon == model.Regon;
+        }
+
+        public override int GetHashCode()
+        {
+            return (Nip ?? "").GetHashCode() + (Pesel ?? "").GetHashCode() + (Regon ?? "").GetHashCode();
         }
     }
 }

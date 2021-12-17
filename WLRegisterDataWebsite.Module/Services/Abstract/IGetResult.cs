@@ -7,4 +7,9 @@ namespace WLRegisterDataWebsite.Module.Services.Abstract
     {
         IEnumerable<EntityModel> GetResult();
     }
+
+    public interface ICacheResult
+    {
+        void AddCachedData(IEnumerable<EntityModel> entityModels);
+    }
 }
