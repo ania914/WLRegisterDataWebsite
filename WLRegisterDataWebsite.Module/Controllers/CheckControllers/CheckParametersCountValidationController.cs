@@ -1,20 +1,21 @@
 ﻿using DevExpress.ExpressApp;
 using DevExpress.ExpressApp.Actions;
 using DevExpress.ExpressApp.SystemModule;
-using DevExpress.Persistent.Base;
 
 namespace WLRegisterDataWebsite.Module.Controllers.CheckControllers
 {
-    public class CheckParameterValidationController : ObjectViewController<ListView, ParameterBase>
+    public partial class CheckParametersCountValidationController : ViewController
     {
         private const int MaxCount = 1;
         private NewObjectViewController newObjectViewController;
         private DeleteObjectsViewController deleteObjectsViewController;
-
-        public CheckParameterValidationController()
+        public CheckParametersCountValidationController()
         {
-            TargetViewId = "CheckSubject_Nip_ListView;CheckSubject_Regon_ListView";
+            InitializeComponent();
+            TargetViewType = ViewType.ListView;
+            TargetViewId = "CheckSubject_Nip_ListView;CheckSubject_Regon_ListView;CheckSubject_BankAccounts_ListView";
         }
+
         protected override void OnActivated()
         {
             base.OnActivated();
@@ -29,6 +30,10 @@ namespace WLRegisterDataWebsite.Module.Controllers.CheckControllers
             {
                 deleteObjectsViewController.DeleteAction.Execute += DeleteAction_Execute;
             }
+        }
+        protected override void OnViewControlsCreated()
+        {
+            base.OnViewControlsCreated();
         }
 
         protected override void OnDeactivated()
@@ -53,7 +58,7 @@ namespace WLRegisterDataWebsite.Module.Controllers.CheckControllers
 
         private void ObjectSpace_Committed(object sender, System.EventArgs e)
         {
-            if (View.CollectionSource.GetCount() + 1 == MaxCount)
+            if (((ListView)View).CollectionSource.GetCount() + 1 == MaxCount)
             {
                 newObjectViewController.NewObjectAction.Enabled.SetItemValue("DisableNewObjects", false);
             }

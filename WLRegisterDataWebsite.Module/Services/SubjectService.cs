@@ -6,6 +6,7 @@ using WLRegisterDataWebsite.Module.BusinessObjects;
 using WLRegisterDataWebsite.Module.BusinessObjects.Models;
 using WLRegisterDataWebsite.Module.Enums;
 using WLRegisterDataWebsite.Module.Services.Abstract;
+using WLRegisterDataWebsite.Module.Services.ApiCheck;
 using WLRegisterDataWebsite.Module.Services.ApiSearch;
 
 namespace WLRegisterDataWebsite.Module.Services
@@ -28,6 +29,13 @@ namespace WLRegisterDataWebsite.Module.Services
         public void ChangeBaseUrl()
         {
             useTestUrl = !useTestUrl;
+        }
+
+        public async Task<object> Check(CheckSubject model, CheckOption selectedOption)
+        {
+            var strategy = CheckApiFactory.GetStrategy(_httpClient, useTestUrl ? TestUri : ProductionUri, model, selectedOption);
+            var result = await strategy.Check();
+            return result;
         }
 
         public async Task<object> Search(SearchSubject model, SearchOption selectedOption)

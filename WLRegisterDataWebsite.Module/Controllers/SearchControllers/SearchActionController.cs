@@ -58,7 +58,6 @@ namespace WLRegisterDataWebsite.Module.Controllers.SearchControllers
         protected override void OnDeactivated()
         {
             base.OnDeactivated();
-            searchAction.Execute -= SearchAction_Execute;
             if (selectSearchOptionController != null)
             {
                 selectSearchOptionController.OnSelectionChanged += OnSelectionChanged;

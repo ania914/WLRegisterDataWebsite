@@ -43,21 +43,45 @@
         <ActionLink ActionId="Refresh" IsNewNode="True" />
         <ActionLink ActionId="Save" IsNewNode="True" />
       </HiddenActions>
+      <Items>
+        <PropertyEditor Id="Date" Index="0" />
+        <PropertyEditor Id="BankAccounts" Index="1" View="CheckSubject_BankAccounts_ListView" LinkView="BankAccount_LookupListView" />
+        <PropertyEditor Id="Nip" Index="2" />
+        <PropertyEditor Id="Regon" Index="3" />
+      </Items>
       <Layout>
         <LayoutGroup Id="Main">
-          <LayoutGroup Id="Nip" Index="1" ShowCaption="True" IsNewNode="True">
+          <LayoutGroup Id="BankAccounts" Index="1" ShowCaption="True" IsNewNode="True">
+            <LayoutItem Id="BankAccounts" ViewItem="BankAccounts" ShowCaption="False" Index="0" IsNewNode="True" />
+          </LayoutGroup>
+          <LayoutGroup Id="Nip" Index="2" ShowCaption="True" IsNewNode="True">
             <LayoutItem Id="Nip" ViewItem="Nip" ShowCaption="False" Index="0" IsNewNode="True" />
           </LayoutGroup>
-          <LayoutGroup Id="Regon" Index="2" ShowCaption="True" IsNewNode="True">
+          <LayoutGroup Id="Regon" Index="3" ShowCaption="True" IsNewNode="True">
             <LayoutItem Id="Regon" ViewItem="Regon" ShowCaption="False" Index="0" IsNewNode="True" />
           </LayoutGroup>
           <TabbedGroup Id="Tabs" Removed="True">
+            <LayoutGroup Id="BankAccounts" Removed="True" />
             <LayoutGroup Id="Nip" Removed="True" />
             <LayoutGroup Id="Regon" Removed="True" />
           </TabbedGroup>
         </LayoutGroup>
       </Layout>
     </DetailView>
+    <DetailView Id="EntityCheckResponse_DetailView" AllowDelete="False" AllowEdit="False" AllowNew="False">
+      <HiddenActions>
+        <ActionLink ActionId="Close" IsNewNode="True" />
+        <ActionLink ActionId="Delete" IsNewNode="True" />
+        <ActionLink ActionId="New" IsNewNode="True" />
+        <ActionLink ActionId="Refresh" IsNewNode="True" />
+        <ActionLink ActionId="Save" IsNewNode="True" />
+      </HiddenActions>
+      <Items>
+        <PropertyEditor Id="Result" AllowEdit="False" />
+      </Items>
+    </DetailView>
+    <ListView Id="EntityCheckResponse_ListView" AllowDelete="False" AllowLink="False" AllowNew="False" />
+    <ListView Id="EntityCheckResponse_LookupListView" AllowDelete="False" AllowNew="False" />
     <DetailView Id="EntityItem_DetailView" AllowEdit="False" />
     <DetailView Id="EntityList_DetailView" AllowEdit="False" />
     <ListView Id="EntityList_Subjects_ListView" AllowDelete="False" AllowLink="False" AllowNew="False" />

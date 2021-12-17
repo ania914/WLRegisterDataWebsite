@@ -1,18 +1,10 @@
-﻿using DevExpress.Data.Filtering;
-using DevExpress.ExpressApp;
+﻿using DevExpress.ExpressApp;
 using DevExpress.ExpressApp.Actions;
 using DevExpress.ExpressApp.Editors;
-using DevExpress.ExpressApp.Layout;
-using DevExpress.ExpressApp.Model.NodeGenerators;
-using DevExpress.ExpressApp.SystemModule;
-using DevExpress.ExpressApp.Templates;
-using DevExpress.ExpressApp.Utils;
 using DevExpress.Persistent.Base;
-using DevExpress.Persistent.Validation;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 using WLRegisterDataWebsite.Module.BusinessObjects;
 using WLRegisterDataWebsite.Module.Enums;
 using WLRegisterDataWebsite.Module.Extensions;
@@ -25,6 +17,8 @@ namespace WLRegisterDataWebsite.Module.Controllers.CheckControllers
 
         private SingleChoiceAction checkOptionSelectionAction;
         private IList<PropertyEditor> propertyEditors;
+
+        public EventHandler<CheckOption> OnSelectionChanged;
 
         public SelectCheckOptionController()
         {
@@ -49,7 +43,7 @@ namespace WLRegisterDataWebsite.Module.Controllers.CheckControllers
             View.CurrentObject = objectSpace.CreateObject<CheckSubject>();
 
             propertyEditors = ((DetailView)View).GetItems<PropertyEditor>();
-            checkOptionSelectionAction.Execute += SearchOptionSelectionAction_Execute;
+            checkOptionSelectionAction.Execute += CheckOptionSelectionAction_Execute;
             HideAllPropertyEditors();
         }
 
@@ -60,20 +54,25 @@ namespace WLRegisterDataWebsite.Module.Controllers.CheckControllers
         protected override void OnDeactivated()
         {
             base.OnDeactivated();
-            checkOptionSelectionAction.Execute -= SearchOptionSelectionAction_Execute;
+            checkOptionSelectionAction.Execute -= CheckOptionSelectionAction_Execute;
         }
 
-        private void SearchOptionSelectionAction_Execute(object sender, SingleChoiceActionExecuteEventArgs e)
+        private void CheckOptionSelectionAction_Execute(object sender, SingleChoiceActionExecuteEventArgs e)
         {
+            if (Enum.TryParse(typeof(CheckOption), e.SelectedChoiceActionItem.Data.ToString(), out object result) && result != null)
+            {
+                var selectedOption = (CheckOption)result;
+                OnSelectionChanged?.Invoke(this, selectedOption);
+            }
             HideAllPropertyEditors();
-            ChangePropertyEditorVisibility(e.SelectedChoiceActionItem.Data.ToString(), true);
+            ChangePropertyEditorVisibility(e.SelectedChoiceActionItem.Data.ToString(), true);            
         }
 
         private void HideAllPropertyEditors()
         {
             foreach (var editor in propertyEditors)
             {
-                if (editor is not ListPropertyEditor)
+                if (editor is not ListPropertyEditor || editor.Id == "BankAccounts")
                     continue;
 
                 ChangePropertyEditorVisibility(editor.Id, false);

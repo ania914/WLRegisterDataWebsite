@@ -1,10 +1,13 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Application>
-  <BOModel Id="BOModel">
-    <Class Name="WLRegisterDataWebsite.Module.BusinessObjects.Models.Entities.EntityCheck" DefaultListView="" DefaultLookupListView="" />
-    <Class Name="WLRegisterDataWebsite.Module.BusinessObjects.Models.Parameters.Nip" DefaultListViewMasterDetailMode="ListViewOnly" />
-  </BOModel>
   <Views Id="Views">
+    <DetailView Id="CheckSubject_DetailView">
+      <Layout Id="Layout">
+        <LayoutGroup Id="Main">
+          <LayoutItem Id="BankAccounts" ViewItem="BankAccounts" Index="1" RelativeSize="31.842576028622542" Removed="True" />
+        </LayoutGroup>
+      </Layout>
+    </DetailView>
     <DetailView Id="SearchSubject_DetailView">
       <Layout Id="Layout">
         <LayoutGroup Id="Main">

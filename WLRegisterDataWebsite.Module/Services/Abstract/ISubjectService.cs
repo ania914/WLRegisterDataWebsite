@@ -10,6 +10,7 @@ namespace WLRegisterDataWebsite.Module.Services
         bool UseTestUrl { get; }
 
         Task<object> Search(SearchSubject model, SearchOption selectedOption);
+        Task<object> Check(CheckSubject model, CheckOption selectedOption);
         Task SaveResults(IObjectSpace objectSpace, object result);
         void ChangeBaseUrl();
     }

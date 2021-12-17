@@ -13,6 +13,7 @@ namespace WLRegisterDataWebsite.Module.BusinessObjects
         private DateTime date = DateTime.Today;
         private List<Nip> nip = new List<Nip>();
         private List<Regon> regon = new List<Regon>();
+        private List<BankAccount> bankAccounts = new List<BankAccount>();
 
         public DateTime Date
         {
@@ -32,6 +33,13 @@ namespace WLRegisterDataWebsite.Module.BusinessObjects
         {
             get => regon;
             set => SetPropertyValue(ref regon, value);
+        }
+
+        [XafDisplayName("Bank account")]
+        public List<BankAccount> BankAccounts
+        {
+            get => bankAccounts;
+            set => SetPropertyValue(ref bankAccounts, value);
         }
     }
 }
